@@ -1,0 +1,1863 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>🏁 Nuestro viaje ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Pacifico&family=Poppins:wght@300;400;500;600;700;800&display=swap');
+
+:root{
+    --bg:#05050a;
+    --panel:#0c0d16;
+    --red:#ff1744;
+    --pink:#ff3b91;
+    --orange:#ff6b00;
+    --blue:#00a8ff;
+    --cyan:#00e5ff;
+    --white:#fff;
+    --muted:#b8bac8;
+}
+
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    background:
+        radial-gradient(circle at 20% 10%,rgba(255,23,68,.16),transparent 28%),
+        radial-gradient(circle at 80% 25%,rgba(0,168,255,.12),transparent 30%),
+        var(--bg);
+    color:white;
+    font-family:Poppins,Arial,sans-serif;
+    overflow-x:hidden;
+}
+
+/* =========================
+   CARGADOR
+========================= */
+
+#loader{
+    position:fixed;
+    inset:0;
+    z-index:9999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:#030308;
+    transition:.8s;
+}
+
+.loader-box{
+    text-align:center;
+    width:min(90%,520px);
+}
+
+.loader-title{
+    font-family:"Bebas Neue";
+    font-size:clamp(42px,10vw,78px);
+    letter-spacing:3px;
+    text-shadow:
+        5px 5px 0 var(--red),
+        0 0 25px rgba(255,23,68,.6);
+}
+
+.loader-sub{
+    color:#ddd;
+    margin:8px 0 25px;
+}
+
+.track{
+    height:12px;
+    background:#222;
+    border-radius:20px;
+    overflow:hidden;
+    border:1px solid #444;
+}
+
+.track-fill{
+    height:100%;
+    width:0;
+    background:linear-gradient(
+        90deg,
+        var(--red),
+        var(--orange),
+        var(--blue)
+    );
+    transition:.15s;
+}
+
+.loader-car{
+    font-size:55px;
+    display:block;
+    margin-top:20px;
+    animation:drive 1.2s infinite alternate;
+}
+
+@keyframes drive{
+    to{
+        transform:translateX(35px) rotate(-2deg);
+    }
+}
+
+/* =========================
+   MENU
+========================= */
+
+nav{
+    position:fixed;
+    top:0;
+    left:0;
+    right:0;
+    z-index:1000;
+
+    height:72px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    gap:8px;
+    padding:8px 18px;
+
+    background:rgba(3,3,8,.88);
+    backdrop-filter:blur(14px);
+
+    border-bottom:1px solid rgba(0,168,255,.35);
+}
+
+.logo{
+    font-family:"Bebas Neue";
+    font-size:29px;
+    color:white;
+    margin-right:18px;
+    white-space:nowrap;
+
+    text-shadow:3px 3px 0 var(--red);
+}
+
+.nav-btn{
+    color:#ddd;
+    text-decoration:none;
+    padding:11px 12px;
+    border-radius:12px;
+
+    font-size:12px;
+    font-weight:600;
+
+    transition:.25s;
+}
+
+.nav-btn:hover{
+    background:rgba(255,23,68,.14);
+    color:white;
+    transform:translateY(-2px);
+}
+
+/* =========================
+   SECCIONES
+========================= */
+
+section{
+    min-height:100vh;
+    padding:115px 7% 80px;
+    position:relative;
+}
+
+.hero{
+    min-height:100vh;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    padding-top:100px;
+
+    background:
+        radial-gradient(
+            circle at 50% 45%,
+            rgba(255,23,68,.16),
+            transparent 34%
+        );
+}
+
+.hero-content{
+    text-align:center;
+    max-width:900px;
+    position:relative;
+    z-index:2;
+}
+
+.badge{
+    display:inline-block;
+
+    padding:7px 14px;
+
+    border:1px solid var(--blue);
+    border-radius:99px;
+
+    color:var(--cyan);
+
+    font-size:12px;
+    letter-spacing:2px;
+    text-transform:uppercase;
+}
+
+.hero h1{
+    font-family:"Bebas Neue";
+
+    font-size:clamp(70px,13vw,150px);
+
+    line-height:.82;
+    letter-spacing:4px;
+
+    margin:22px 0 14px;
+
+    text-shadow:
+        7px 7px 0 var(--red),
+        0 0 35px rgba(255,23,68,.45);
+}
+
+.script{
+    font-family:Pacifico;
+    color:#ff5aa5;
+
+    font-size:clamp(25px,4vw,45px);
+}
+
+.hero p{
+    color:var(--muted);
+
+    max-width:650px;
+
+    margin:18px auto 28px;
+}
+
+.race-line{
+    width:min(850px,100%);
+
+    height:75px;
+
+    margin:35px auto;
+
+    border-top:5px solid var(--orange);
+    border-bottom:5px solid var(--blue);
+
+    transform:skewY(-2deg);
+
+    position:relative;
+}
+
+.race-line:before{
+    content:"🏎️💨";
+
+    position:absolute;
+
+    left:8%;
+    top:7px;
+
+    font-size:50px;
+
+    animation:race 4s linear infinite;
+}
+
+@keyframes race{
+    to{
+        left:86%;
+    }
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+
+    padding:13px 21px;
+
+    border:1px solid var(--red);
+    border-radius:99px;
+
+    color:white;
+
+    background:
+        linear-gradient(
+            90deg,
+            rgba(255,23,68,.2),
+            rgba(255,107,0,.12)
+        );
+
+    cursor:pointer;
+    text-decoration:none;
+
+    font-weight:700;
+
+    transition:.25s;
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+
+    box-shadow:
+        0 0 25px rgba(255,23,68,.35);
+}
+
+/* =========================
+   TITULOS
+========================= */
+
+.section-title{
+    text-align:center;
+    margin-bottom:45px;
+}
+
+.section-title .number{
+    color:var(--blue);
+    font-family:"Bebas Neue";
+    font-size:25px;
+}
+
+.section-title h2{
+    font-family:"Bebas Neue";
+
+    font-size:clamp(45px,7vw,75px);
+
+    letter-spacing:2px;
+}
+
+.section-title p{
+    color:var(--muted);
+}
+
+/* =========================
+   HISTORIA
+========================= */
+
+.timeline{
+    max-width:1000px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(2,1fr);
+
+    gap:22px;
+}
+
+.card{
+    position:relative;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,19,35,.96),
+            rgba(7,8,15,.96)
+        );
+
+    border:1px solid rgba(255,255,255,.12);
+
+    border-radius:22px;
+
+    overflow:hidden;
+
+    box-shadow:
+        0 15px 45px rgba(0,0,0,.35);
+
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-7px);
+
+    border-color:var(--red);
+
+    box-shadow:
+        0 0 30px rgba(255,23,68,.16);
+}
+
+.card .stripe{
+    height:6px;
+
+    background:
+        linear-gradient(
+            90deg,
+            var(--red),
+            var(--orange),
+            var(--blue)
+        );
+}
+
+.card-body{
+    padding:24px;
+}
+
+.card h3{
+    font-family:"Bebas Neue";
+    font-size:32px;
+    letter-spacing:1px;
+}
+
+.card p{
+    color:#c9cad4;
+
+    margin-top:9px;
+
+    line-height:1.75;
+}
+
+/* =========================
+   FOTOS
+========================= */
+
+.gallery{
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+}
+
+.photo-card{
+    border-radius:20px;
+
+    padding:7px;
+
+    background:
+        linear-gradient(
+            135deg,
+            var(--red),
+            var(--blue),
+            var(--orange)
+        );
+
+    box-shadow:
+        0 12px 35px rgba(0,0,0,.4);
+
+    transition:.3s;
+}
+
+.photo-card:hover{
+    transform:
+        rotate(-1deg)
+        scale(1.025);
+}
+
+.photo-card img{
+    display:block;
+
+    width:100%;
+
+    aspect-ratio:4/5;
+
+    object-fit:cover;
+
+    border-radius:15px;
+
+    background:#111;
+}
+
+.photo-label{
+    text-align:center;
+
+    font-family:"Bebas Neue";
+
+    font-size:23px;
+
+    padding:9px 2px 4px;
+}
+
+/* =========================
+   RAZONES
+========================= */
+
+.reasons{
+    max-width:1000px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(3,1fr);
+
+    gap:18px;
+}
+
+.reason{
+    min-height:190px;
+
+    padding:25px;
+
+    border-radius:20px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #111323,
+            #080910
+        );
+
+    border:1px solid rgba(0,168,255,.25);
+
+    cursor:pointer;
+
+    position:relative;
+
+    overflow:hidden;
+
+    transition:.3s;
+}
+
+.reason:hover{
+    transform:translateY(-6px);
+
+    border-color:var(--pink);
+}
+
+.reason h3{
+    font-family:"Bebas Neue";
+    font-size:28px;
+}
+
+.reason p{
+    color:#bbb;
+
+    line-height:1.6;
+
+    margin-top:10px;
+}
+
+.reason .hidden-msg{
+    display:none;
+}
+
+.reason.open .hint{
+    display:none;
+}
+
+.reason.open .hidden-msg{
+    display:block;
+}
+
+/* =========================
+   CARTA
+========================= */
+
+.letter{
+    max-width:820px;
+
+    margin:auto;
+
+    padding:38px;
+
+    background:
+        linear-gradient(
+            145deg,
+            rgba(17,19,35,.97),
+            rgba(8,8,14,.97)
+        );
+
+    border-radius:25px;
+
+    border:1px solid rgba(255,23,68,.35);
+
+    box-shadow:
+        0 0 45px rgba(255,23,68,.1);
+}
+
+.letter h3{
+    font-family:Pacifico;
+
+    color:#ff5aa5;
+
+    font-size:32px;
+
+    margin-bottom:20px;
+}
+
+.letter p{
+    color:#d5d5dd;
+
+    line-height:1.9;
+
+    margin-bottom:18px;
+}
+
+/* =========================
+   REGALO
+========================= */
+
+.gift-area{
+    text-align:center;
+
+    max-width:850px;
+
+    margin:auto;
+}
+
+.gift-wrap{
+    display:inline-block;
+
+    position:relative;
+
+    cursor:pointer;
+
+    margin:30px auto;
+
+    filter:
+        drop-shadow(
+            0 0 25px rgba(255,23,68,.35)
+        );
+
+    animation:
+        float 2.4s ease-in-out infinite;
+}
+
+@keyframes float{
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+.gift{
+    width:210px;
+    height:165px;
+
+    border-radius:15px;
+
+    background:
+        linear-gradient(
+            90deg,
+            transparent 40%,
+            var(--red) 40% 60%,
+            transparent 60%
+        ),
+        linear-gradient(#151621,#080910);
+
+    border:2px solid #444;
+
+    position:relative;
+}
+
+.gift:before{
+    content:"";
+
+    position:absolute;
+
+    left:-8px;
+    right:-8px;
+
+    top:-17px;
+
+    height:27px;
+
+    background:#171822;
+
+    border:2px solid #444;
+
+    border-radius:10px;
+}
+
+.bow{
+    position:absolute;
+
+    top:-48px;
+    left:50%;
+
+    transform:translateX(-50%);
+
+    font-size:70px;
+}
+
+.gift-label{
+    position:absolute;
+
+    left:50%;
+    top:55px;
+
+    transform:translateX(-50%);
+
+    font-family:"Bebas Neue";
+
+    font-size:25px;
+
+    white-space:nowrap;
+
+    text-shadow:2px 2px 0 #000;
+}
+
+/* =========================
+   MODAL DEL RAMO
+========================= */
+
+.modal{
+    position:fixed;
+
+    inset:0;
+
+    z-index:5000;
+
+    background:rgba(0,0,0,.88);
+
+    backdrop-filter:blur(10px);
+
+    display:none;
+
+    align-items:center;
+    justify-content:center;
+
+    padding:20px;
+}
+
+.modal.show{
+    display:flex;
+}
+
+.modal-box{
+    width:min(920px,96vw);
+
+    max-height:92vh;
+
+    overflow:auto;
+
+    position:relative;
+
+    padding:10px;
+
+    border-radius:22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #080910,
+            #141626
+        );
+
+    border:2px solid var(--blue);
+
+    box-shadow:
+        0 0 60px rgba(0,168,255,.2);
+
+    animation:
+        modalIn .5s ease;
+}
+
+@keyframes modalIn{
+    from{
+        transform:scale(.6);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.modal-box img{
+    width:100%;
+
+    display:block;
+
+    max-height:80vh;
+
+    object-fit:contain;
+
+    border-radius:14px;
+}
+
+.close{
+    position:absolute;
+
+    right:17px;
+    top:15px;
+
+    width:40px;
+    height:40px;
+
+    border-radius:50%;
+
+    border:1px solid var(--pink);
+
+    background:#080910;
+
+    color:white;
+
+    font-size:24px;
+
+    cursor:pointer;
+
+    z-index:2;
+}
+
+.modal-caption{
+    text-align:center;
+
+    padding:12px;
+
+    font-family:"Bebas Neue";
+
+    font-size:25px;
+
+    color:#ff5aa5;
+}
+
+/* =========================
+   FINAL
+========================= */
+
+.final{
+    text-align:center;
+
+    display:flex;
+
+    align-items:center;
+
+    justify-content:center;
+}
+
+.final h2{
+    font-family:"Bebas Neue";
+
+    font-size:clamp(65px,12vw,130px);
+
+    text-shadow:
+        7px 7px 0 var(--red);
+}
+
+.final .finish{
+    font-size:60px;
+
+    margin:20px;
+}
+
+/* =========================
+   CARRO FLOTANTE
+========================= */
+
+.floating-car{
+    position:fixed;
+
+    right:-80px;
+
+    bottom:30px;
+
+    font-size:45px;
+
+    z-index:900;
+
+    animation:
+        driveAcross 10s linear infinite;
+
+    pointer-events:none;
+}
+
+@keyframes driveAcross{
+
+    0%{
+        right:-80px;
+    }
+
+    100%{
+        right:105vw;
+    }
+}
+
+/* =========================
+   CORAZONES
+========================= */
+
+.heart{
+    position:fixed;
+
+    pointer-events:none;
+
+    z-index:20;
+
+    animation:
+        rise 5s linear forwards;
+
+    font-size:18px;
+}
+
+@keyframes rise{
+
+    to{
+        transform:
+            translateY(-100vh)
+            rotate(360deg);
+
+        opacity:0;
+    }
+}
+
+/* =========================
+   CONFETI
+========================= */
+
+.confetti{
+    position:fixed;
+
+    z-index:7000;
+
+    pointer-events:none;
+
+    font-size:22px;
+
+    animation:
+        fall 2.3s ease-out forwards;
+}
+
+@keyframes fall{
+
+    to{
+        transform:
+            translate(var(--x),100vh)
+            rotate(720deg);
+
+        opacity:0;
+    }
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media(max-width:850px){
+
+    nav{
+        overflow-x:auto;
+        justify-content:flex-start;
+    }
+
+    .logo{
+        margin-right:5px;
+    }
+
+    .nav-btn{
+        min-width:max-content;
+    }
+}
+
+@media(max-width:800px){
+
+    .timeline{
+        grid-template-columns:1fr;
+    }
+
+    .gallery{
+        grid-template-columns:repeat(2,1fr);
+    }
+
+    .reasons{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:520px){
+
+    .gallery{
+        grid-template-columns:1fr;
+    }
+
+    .reasons{
+        grid-template-columns:1fr;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     CARGADOR
+========================= -->
+
+<div id="loader">
+
+    <div class="loader-box">
+
+        <div class="loader-title">
+            HOT WHEELS
+        </div>
+
+        <div class="loader-sub">
+            Preparando nuestro viaje... 🏁❤️
+        </div>
+
+        <div class="track">
+            <div
+                class="track-fill"
+                id="progress">
+            </div>
+        </div>
+
+        <span class="loader-car">
+            🏎️💨
+        </span>
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     MENU
+========================= -->
+
+<nav>
+
+    <div class="logo">
+        🏁 HW LOVE
+    </div>
+
+    <a class="nav-btn" href="#inicio">
+        🏠 Inicio
+    </a>
+
+    <a class="nav-btn" href="#historia">
+        🏎️ Recorrido
+    </a>
+
+    <a class="nav-btn" href="#recuerdos">
+        📸 Recuerdos
+    </a>
+
+    <a class="nav-btn" href="#razones">
+        ❤️ Razones
+    </a>
+
+    <a class="nav-btn" href="#carta">
+        💌 Carta
+    </a>
+
+    <a class="nav-btn" href="#regalo">
+        🎁 Pit Stop
+    </a>
+
+    <a class="nav-btn" href="#final">
+        🏆 Final
+    </a>
+
+</nav>
+
+
+<main>
+
+<!-- =========================
+     INICIO
+========================= -->
+
+<section id="inicio" class="hero">
+
+    <div class="hero-content">
+
+        <span class="badge">
+            SPECIAL LOVE EDITION • 01
+        </span>
+
+        <h1>
+            NUESTRO<br>
+            VIAJE
+        </h1>
+
+        <div class="script">
+            a toda velocidad ❤️
+        </div>
+
+        <p>
+            Una pequeña pista de carreras donde guardé
+            nuestros recuerdos, mis razones para amarte
+            y una sorpresa especial para ti.
+        </p>
+
+        <div class="race-line"></div>
+
+        <a
+            href="#historia"
+            class="btn">
+            🏁 Empezar el recorrido
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HISTORIA
+========================= -->
+
+<section id="historia">
+
+    <div class="section-title">
+
+        <div class="number">
+            02 • STARTING LINE
+        </div>
+
+        <h2>
+            Nuestro recorrido
+        </h2>
+
+        <p>
+            Algunas de las paradas más bonitas
+            de nuestra historia.
+        </p>
+
+    </div>
+
+
+    <div class="timeline">
+
+
+        <article class="card">
+
+            <div class="stripe"></div>
+
+            <div class="card-body">
+
+                <h3>
+                    🏎️ Nuestro comienzo ❤️
+                </h3>
+
+                <p>
+                    Sin saberlo, aquel momento fue el comienzo
+                    de una historia que hoy significa muchísimo
+                    para mí.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="stripe"></div>
+
+            <div class="card-body">
+
+                <h3>
+                    💗 Un recuerdo especial
+                </h3>
+
+                <p>
+                    Hay momentos que quisiera guardar para siempre,
+                    porque cuando pienso en ellos vuelvo a sentir
+                    lo feliz que fui a tu lado.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="stripe"></div>
+
+            <div class="card-body">
+
+                <h3>
+                    🫶 Nosotros
+                </h3>
+
+                <p>
+                    No somos una historia perfecta; somos nuestra
+                    propia historia, llena de momentos, risas,
+                    aprendizajes y mucho amor.
+                </p>
+
+            </div>
+
+        </article>
+
+
+        <article class="card">
+
+            <div class="stripe"></div>
+
+            <div class="card-body">
+
+                <h3>
+                    🏁 Y aquí seguimos
+                </h3>
+
+                <p>
+                    Después de todo lo vivido, aquí seguimos,
+                    creando recuerdos y escribiendo una historia
+                    que todavía tiene muchísimo por recorrer.
+                </p>
+
+            </div>
+
+        </article>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     RECUERDOS
+========================= -->
+
+<section id="recuerdos">
+
+    <div class="section-title">
+
+        <div class="number">
+            03 • MEMORY GARAGE
+        </div>
+
+        <h2>
+            Nuestros recuerdos
+        </h2>
+
+        <p>
+            Cada foto es una pequeña parada
+            de nuestro viaje.
+        </p>
+
+    </div>
+
+
+    <div class="gallery">
+
+
+        <div class="photo-card">
+
+            <img
+                src="fotos/foto1.jpg"
+                alt="Nuestro recuerdo 1">
+
+            <div class="photo-label">
+                SPECIAL EDITION ❤️
+            </div>
+
+        </div>
+
+
+        <div class="photo-card">
+
+            <img
+                src="fotos/foto2.jpg"
+                alt="Nuestro recuerdo 2">
+
+            <div class="photo-label">
+                MOMENT #02
+            </div>
+
+        </div>
+
+
+        <div class="photo-card">
+
+            <img
+                src="fotos/foto3.jpg"
+                alt="Nuestro recuerdo 3">
+
+            <div class="photo-label">
+                MOMENT #03
+            </div>
+
+        </div>
+
+
+        <div class="photo-card">
+
+            <img
+                src="fotos/foto4.jpg"
+                alt="Nuestro recuerdo 4">
+
+            <div class="photo-label">
+                MOMENT #04
+            </div>
+
+        </div>
+
+
+        <div class="photo-card">
+
+            <img
+                src="fotos/foto5.jpg"
+                alt="Nuestro recuerdo 5">
+
+            <div class="photo-label">
+                MOMENT #05
+            </div>
+
+        </div>
+
+
+        <div class="photo-card">
+
+            <img
+                src="fotos/foto6.jpg"
+                alt="Nuestro recuerdo 6">
+
+            <div class="photo-label">
+                MOMENT #06
+            </div>
+
+        </div>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     RAZONES
+========================= -->
+
+<section id="razones">
+
+    <div class="section-title">
+
+        <div class="number">
+            04 • LOVE GARAGE
+        </div>
+
+        <h2>
+            Mis razones
+        </h2>
+
+        <p>
+            Haz clic en cada tarjeta para descubrirla. ❤️
+        </p>
+
+    </div>
+
+
+    <div class="reasons">
+
+
+        <article class="reason">
+
+            <h3>
+                Porque me haces feliz
+            </h3>
+
+            <p class="hint">
+                🏁 Haz clic para abrir
+            </p>
+
+            <p class="hidden-msg">
+                Porque contigo hasta los momentos más simples
+                pueden convertirse en mis favoritos. ❤️
+            </p>
+
+        </article>
+
+
+        <article class="reason">
+
+            <h3>
+                Por tu sonrisa
+            </h3>
+
+            <p class="hint">
+                🏁 Haz clic para abrir
+            </p>
+
+            <p class="hidden-msg">
+                Porque tu sonrisa tiene una forma muy especial
+                de cambiar mis días.
+            </p>
+
+        </article>
+
+
+        <article class="reason">
+
+            <h3>
+                Por tu forma de querer
+            </h3>
+
+            <p class="hint">
+                🏁 Haz clic para abrir
+            </p>
+
+            <p class="hidden-msg">
+                Porque en tus detalles encuentro muchas razones
+                para sentirme querida y especial.
+            </p>
+
+        </article>
+
+
+        <article class="reason">
+
+            <h3>
+                Por nuestros momentos
+            </h3>
+
+            <p class="hint">
+                🏁 Haz clic para abrir
+            </p>
+
+            <p class="hidden-msg">
+                Por cada salida, conversación, abrazo y locura
+                que ahora forma parte de nuestra historia.
+            </p>
+
+        </article>
+
+
+        <article class="reason">
+
+            <h3>
+                Porque eres tú
+            </h3>
+
+            <p class="hint">
+                🏁 Haz clic para abrir
+            </p>
+
+            <p class="hidden-msg">
+                No necesito una razón complicada. Te quiero por
+                ser tú y por todo lo que te hace único para mí.
+            </p>
+
+        </article>
+
+
+        <article class="reason">
+
+            <h3>
+                Porque quiero más
+            </h3>
+
+            <p class="hint">
+                🏁 Haz clic para abrir
+            </p>
+
+            <p class="hidden-msg">
+                Porque todavía quiero vivir muchísimas aventuras,
+                recuerdos y kilómetros de vida contigo. 🏎️❤️
+            </p>
+
+        </article>
+
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CARTA
+========================= -->
+
+<section id="carta">
+
+    <div class="section-title">
+
+        <div class="number">
+            05 • LOVE LETTER
+        </div>
+
+        <h2>
+            Una carta para ti
+        </h2>
+
+    </div>
+
+
+    <div class="letter">
+
+        <h3>
+            Mi amor,
+        </h3>
+
+        <p>
+            No sé si existen las palabras suficientes para explicar
+            todo lo que significas para mí, pero quiero que sepas
+            que desde que llegaste a mi vida muchas cosas cambiaron
+            para bien. Amo cada momento que compartimos, nuestras
+            conversaciones, nuestras risas, nuestros abrazos y hasta
+            esas pequeñas locuras que solo nosotros entendemos.
+            Gracias por hacerme sentir querida, por acompañarme y
+            por convertir tantos momentos simples en recuerdos que
+            guardo con muchísimo amor en mi corazón. ❤️
+        </p>
+
+        <p>
+            No sé qué nos espera en el futuro, pero sí sé que quiero
+            seguir descubriéndolo contigo. Quiero seguir creciendo
+            a tu lado, vivir nuevas aventuras, superar juntos los
+            días difíciles y celebrar todos los días bonitos que
+            todavía nos quedan. Te elijo a ti, a nosotros y a esta
+            historia que hemos construido, porque eres una de las
+            partes más bonitas de mi vida. Te amo muchísimo y espero
+            que sigamos escribiendo nuestra historia por mucho,
+            mucho tiempo. ❤️
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     REGALO
+========================= -->
+
+<section id="regalo">
+
+    <div class="section-title">
+
+        <div class="number">
+            06 • PIT STOP
+        </div>
+
+        <h2>
+            Una sorpresa para ti
+        </h2>
+
+        <p>
+            Haz clic en el regalo para descubrir
+            lo que preparé. 🎁
+        </p>
+
+    </div>
+
+
+    <div class="gift-area">
+
+        <div
+            class="gift-wrap"
+            id="gift">
+
+            <div class="bow">
+                🎀
+            </div>
+
+            <div class="gift">
+
+                <div class="gift-label">
+                    HOT WHEELS ❤️
+                </div>
+
+            </div>
+
+        </div>
+
+        <p style="color:#aaa">
+            🏁 PIT STOP • SOLO PARA TI 🏁
+        </p>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     FINAL
+========================= -->
+
+<section id="final" class="final">
+
+    <div>
+
+        <div class="finish">
+            🏁
+        </div>
+
+        <h2>
+            TE ELEGIRÍA<br>
+            UNA Y OTRA VEZ
+        </h2>
+
+        <div class="script">
+            en cada vuelta de la vida ❤️
+        </div>
+
+        <p style="color:#aaa;margin-top:20px">
+            Gracias por recorrer este camino conmigo.
+        </p>
+
+    </div>
+
+</section>
+
+</main>
+
+
+<!-- CARRO QUE RECORRE LA PÁGINA -->
+
+<div class="floating-car">
+    🏎️💨
+</div>
+
+
+<!-- =========================
+     VENTANA DEL REGALO
+========================= -->
+
+<div
+    class="modal"
+    id="giftModal">
+
+    <div class="modal-box">
+
+        <button
+            class="close"
+            id="closeModal">
+            ×
+        </button>
+
+        <img
+            src="regalo-hotwheels.png"
+            alt="Ramo de rosas con carros Hot Wheels">
+
+        <div class="modal-caption">
+           Siempre voy a querer hacer feliz a tu niño interior, TE AMO ❤️🏎️
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+/* =========================
+   CARGADOR
+========================= */
+
+const loader =
+    document.getElementById("loader");
+
+const progress =
+    document.getElementById("progress");
+
+let value = 0;
+
+const timer = setInterval(() => {
+
+    value += Math.floor(Math.random()*9)+4;
+
+    if(value >= 100){
+
+        value = 100;
+
+        clearInterval(timer);
+
+        setTimeout(() => {
+
+            loader.style.opacity = "0";
+
+        },250);
+
+        setTimeout(() => {
+
+            loader.remove();
+
+        },1000);
+    }
+
+    progress.style.width =
+        value + "%";
+
+},100);
+
+
+/* =========================
+   RAZONES
+========================= */
+
+document
+.querySelectorAll(".reason")
+.forEach(card => {
+
+    card.addEventListener(
+        "click",
+        () => {
+
+            card.classList.toggle("open");
+
+        }
+    );
+
+});
+
+
+/* =========================
+   REGALO
+========================= */
+
+const modal =
+    document.getElementById("giftModal");
+
+const gift =
+    document.getElementById("gift");
+
+const closeModal =
+    document.getElementById("closeModal");
+
+
+gift.addEventListener(
+    "click",
+    () => {
+
+        modal.classList.add("show");
+
+        confetti();
+
+    }
+);
+
+
+closeModal.addEventListener(
+    "click",
+    () => {
+
+        modal.classList.remove("show");
+
+    }
+);
+
+
+modal.addEventListener(
+    "click",
+    event => {
+
+        if(event.target === modal){
+
+            modal.classList.remove("show");
+
+        }
+
+    }
+);
+
+
+document.addEventListener(
+    "keydown",
+    event => {
+
+        if(event.key === "Escape"){
+
+            modal.classList.remove("show");
+
+        }
+
+    }
+);
+
+
+/* =========================
+   CONFETI
+========================= */
+
+function confetti(){
+
+    const pieces = [
+        "🏎️",
+        "❤️",
+        "🏁",
+        "🔥",
+        "✨"
+    ];
+
+    for(
+        let i = 0;
+        i < 28;
+        i++
+    ){
+
+        const el =
+            document.createElement("span");
+
+        el.className =
+            "confetti";
+
+        el.textContent =
+            pieces[
+                Math.floor(
+                    Math.random()*pieces.length
+                )
+            ];
+
+        el.style.left =
+            Math.random()*100 + "vw";
+
+        el.style.top =
+            "-30px";
+
+        el.style.setProperty(
+            "--x",
+            (Math.random()*240-120) + "px"
+        );
+
+        el.style.animationDelay =
+            (Math.random()*.45) + "s";
+
+        document.body.appendChild(el);
+
+        setTimeout(
+            () => el.remove(),
+            2800
+        );
+
+    }
+
+}
+
+
+/* =========================
+   CORAZONES Y CARROS
+========================= */
+
+setInterval(() => {
+
+    if(document.hidden)
+        return;
+
+    const h =
+        document.createElement("span");
+
+    h.className =
+        "heart";
+
+    h.textContent =
+        Math.random() > .5
+        ? "❤️"
+        : "🏎️";
+
+    h.style.left =
+        Math.random()*100 + "vw";
+
+    h.style.bottom =
+        "-20px";
+
+    h.style.fontSize =
+        (12 + Math.random()*15) + "px";
+
+    document.body.appendChild(h);
+
+    setTimeout(
+        () => h.remove(),
+        5000
+    );
+
+},1200);
+
+</script>
+
+</body>
+</html>
